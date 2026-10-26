@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitPulse - مدربك الرياضي الشخصي</title>
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .container {
+            width: 100%;
+            max-width: 480px;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 24px;
+        }
+        header h1 {
+            font-size: 28px;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        header p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            text-align: center;
+        }
+        .stat-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            border-radius: 12px;
+        }
+        .stat-box h3 {
+            font-size: 18px;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+        .stat-box span {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+        .workout-title {
+            font-size: 18px;
+            margin-bottom: 12px;
+            font-weight: bold;
+        }
+        .timer-display {
+            font-size: 48px;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            color: var(--primary);
+        }
+        .btn {
+            width: 100%;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background-color: var(--primary-dark);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>FitPulse</h1>
+            <p>مدربك الرياضي اليومي للمنزل</p>
+        </header>
+
+        <!-- احصائيات سريعة -->
+        <div class="card">
+            <div class="stats-grid">
+                <div class="stat-box">
+                    <h3>350</h3>
+                    <span>سعرة حرارية</span>
+                </div>
+                <div class="stat-box">
+                    <h3>45 د</h3>
+                    <span>وقت التمرين</span>
+                </div>
+                <div class="stat-box">
+                    <h3>1.5 لتر</h3>
+                    <span>الماء</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- مؤقت التمرين -->
+        <div class="card" style="text-align: center;">
+            <div class="workout-title">تمارين البطن والوسط</div>
+            <div class="timer-display" id="timer">00:30</div>
+            <button class="btn" onclick="startWorkout()">ابدأ التمرين الآن</button>
+        </div>
+    </div>
+
+    <script>
+        function startWorkout() {
+            let timeLeft = 30;
+            const timerDisplay = document.getElementById('timer');
+            let countdown = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    alert('أحسنت! انتهى التمرين بنجاح.');
+                    timerDisplay.textContent = "00:30";
+                } else {
+                    timeLeft--;
+                    let seconds = timeLeft < 10 ? "0" + timeLeft : timeLeft;
+                    timerDisplay.textContent = "00:" + seconds;
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
